@@ -1,0 +1,81 @@
+import React from 'react';
+import {
+    Box,
+    Link,
+    Card,
+    Stack,
+    Avatar,
+    Typography,
+    CardHeader,
+    IconButton,
+} from "@mui/material";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { Link as RouterLink } from "react-router-dom";
+import { fDate } from "../../utils/formatTime";
+import PostReaction from './PostReaction';
+import CommentList from '../comment/CommentList';
+import ComentForm from '../comment/ComentForm';
+
+function PostCard({post}) {
+    return (
+      <Card>
+        <CardHeader
+          disableTypography
+          avatar={
+            <Avatar src={post?.author?.avatarUrl} alt={post?.author?.name} />
+          }
+          title={
+            <Link
+              variant="subtitle2"
+              color="text.primary"
+              component={RouterLink}
+              sx={{ fontweight: 600 }}
+              to={`/user/${post.author._id}`}
+            >
+              {post?.author?.name}
+            </Link>
+          }
+          subheader={
+            <Typography
+              variant="caption"
+              sx={{ display: "block", color: "text.secondary" }}
+            >
+              {fDate(post.createdAt)}
+            </Typography>
+          }
+          action={
+            <IconButton>
+              <MoreVertIcon sx={{ fontsize: 30 }} />
+            </IconButton>
+          }
+        />
+
+        <Stack spacing={2} sx={{ p: 3 }}>
+          <Typography>{post.content}</Typography>
+
+          {post.image && (
+            <Box
+              sx={{
+                borderRadius: 2,
+                overflow: "hidden",
+                height: 300,
+                "& img": { objectFit: "cover", width: 1, height: 1 },
+              }}
+            >
+              <img
+                style={{ objectFit: "cover", width: "100%" , height: "100%" }}
+                src={post.image}
+                alt="post"
+              />
+            </Box>
+          )}
+
+          <PostReaction post={post} />
+          <CommentList postId={post._id} />
+          <ComentForm postId={post._id} />
+        </Stack>
+      </Card>
+    );
+}
+
+export default PostCard
