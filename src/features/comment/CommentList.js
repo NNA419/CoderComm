@@ -22,6 +22,7 @@ function CommentList({ postId }) {
     }),
         shallowEqual
         );
+    console.log(commentsById);
     
     const totalPages = Math.ceil(totalComments / COMMENTS_PER_POST);
 

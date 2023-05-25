@@ -15,6 +15,8 @@ import { Box, Card, Container, Tab, Tabs } from '@mui/material';
 import { capitalCase } from 'change-case';
 import ProfileCover from '../features/user/ProfileCover';
 import { styled } from "@mui/material/styles";
+import RequestList from '../features/friend/RequestList';
+import PendingActionsIcon from "@mui/icons-material/PendingActions";
 
 const TabsWrapperStyle = styled("div")(({ theme }) => ({
     zIndex: 9,
@@ -41,26 +43,31 @@ function HomePage() {
     };
 
     const PROFILE_TABS = [
-        {
-            value : "profile",
-            icon: <AccountBoxIcon sx={{ fontsize : 24 }}/>,
-            component: <Profile profile={user} />,
-        },
-        {
-            value : "friends",
-            icon: <PeopleAltIcon sx={{ fontsize: 24 }}/>,
-            component : <FriendList/>,
-        },
-        {
-            value : "request",
-            icon: <ContactMailIcon sx={{ fontsize : 24 }}/>,
-            component : <FriendRequests/>,
-        },
-        {
-            value: "add_friend",
-            icon: <PersonAddRoudedIcon sx={{ fontsize: 24 }} />,
-            component: <AddFriend />,
-        },
+      {
+        value: "profile",
+        icon: <AccountBoxIcon sx={{ fontsize: 24 }} />,
+        component: <Profile profile={user} />,
+      },
+      {
+        value: "friends",
+        icon: <PeopleAltIcon sx={{ fontsize: 24 }} />,
+        component: <FriendList />,
+      },
+      {
+        value: "request",
+        icon: <ContactMailIcon sx={{ fontsize: 24 }} />,
+        component: <FriendRequests />,
+      },
+      {
+        value: "add_friend",
+        icon: <PersonAddRoudedIcon sx={{ fontsize: 24 }} />,
+        component: <AddFriend />,
+      },
+      {
+        value: "request_list",
+        icon: <PendingActionsIcon sx={{ fontsize: 24 }} />,
+        component: <RequestList />,
+      },
     ];
 
     return (
