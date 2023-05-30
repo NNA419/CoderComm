@@ -3,7 +3,7 @@ import { FormHelperText } from "@mui/material";
 import UploadSingleFile from "../UploadSingleFile";
 
 
-function FUploadImage({ name, ...other }) {
+function FUploadImage({ name,image, ...other }) {
     const { control }= useFormContext();
     console.log("FUploadImage")
     return (
@@ -15,7 +15,7 @@ function FUploadImage({ name, ...other }) {
 
                 return (
                     <UploadSingleFile
-                        
+                        image={image}
                         accept="image/*"
                         file={field.value}
                         error={checkError}

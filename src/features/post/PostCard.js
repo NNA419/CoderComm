@@ -13,6 +13,7 @@ import {
     MenuItem,
     Modal,
     alpha,
+    Button,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Link as RouterLink } from "react-router-dom";
@@ -45,7 +46,9 @@ const style = {
 
 function PostCard({ post }) {
   const [open, setOpen] = useState(false);
+  const [openQuestion, setOpenQuestion] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  
   const dispatch = useDispatch();
 
   console.log(post)
@@ -89,6 +92,10 @@ function PostCard({ post }) {
     [setValue]
   );
 
+  const handleModalDeletePost = () => {
+    setOpenQuestion(true);
+  };
+
   const handleDeletePost = () => {
     dispatch(deletePost({postId : post._id , userId : post.author._id }));
     handleMenuclose();
@@ -96,7 +103,10 @@ function PostCard({ post }) {
 
   const handleEditPost = () => {
     setOpen(true);
+    setValue("content", post.content)
   }
+
+ 
 
   const handlePostMenuOpen = (e) => {
     setAnchorEl(e.currentTarget)
@@ -106,6 +116,10 @@ function PostCard({ post }) {
     setAnchorEl(null);
   };
 
+  const handleQuestionClose = () => {
+    setOpenQuestion(false)
+  };
+  
   const renderMenu = (
     <Menu
       id="menu-appbar"
@@ -132,7 +146,7 @@ function PostCard({ post }) {
       </MenuItem>
 
       <MenuItem
-        onClick={handleDeletePost}
+        onClick={handleModalDeletePost}
         sx={{ mx: 1 }}
       >
         Delete Post
@@ -174,6 +188,7 @@ console.log("PostCard")
                 {/* <input type='file' ref={fileInput} onChange={handleFile}/> */}
 
                 <FUploadImage
+                  image={post.image}
                   name="image"
                   accept="image/*"
                   maxSize={3145728}
@@ -198,6 +213,20 @@ console.log("PostCard")
                 </Box>
               </Stack>
             </FormProvider>
+          </Card>
+        </Box>
+      </Modal>
+
+      <Modal
+        open={openQuestion}
+        onClose={handleQuestionClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Card sx={{padding: 3 , display: "flex", flexDirection: "row" , justifyContent:"space-around"}}>
+            <Button variant="contained" color="error" onClick={() => setOpenQuestion(false)} >No</Button>
+            <Button variant="contained" color="success" onClick={handleDeletePost}>Yes</Button>
           </Card>
         </Box>
       </Modal>

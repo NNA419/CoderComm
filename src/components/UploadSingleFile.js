@@ -19,7 +19,7 @@ const DropZoneStyle = styled("div")(({ theme }) => ({
     "&:hover": { opacity: 0.72, cursor: "pointer" },  
 }));
 
-function UploadSingleFile({ error = false, file, helperText, sx, ...other }) {
+function UploadSingleFile({ error = false, file, helperText, sx,image, ...other }) {
 
     const previewURL = isString(file)
       ? file
@@ -45,7 +45,6 @@ function UploadSingleFile({ error = false, file, helperText, sx, ...other }) {
     return (
       <Box sx={{ width: "100%", ...sx }}>
         <DropZoneStyle
-
           {...getRootProps()}
           sx={{
             ...(isDragActive && { opacity: 0.72 }),
@@ -99,6 +98,28 @@ function UploadSingleFile({ error = false, file, helperText, sx, ...other }) {
               />
             </Box>
           )}
+
+          {!file && image && (
+            <Box
+              sx={{
+                top: 8,
+                left: 8,
+                borderRadius: 1,
+                position: "absolute",
+                width: "calc(100% - 16px)",
+                height: "calc(100% - 16px)",
+                overflow: "hidden",
+                "& img": { objectFit: "cover", width: 1, height: 1 },
+              }}
+            >
+              <img
+                alt="file preview"
+                src={image}
+                // src="https://res.cloudinary.com/djua6pen0/image/upload/v1685374185/t4xjpeq2kc7oaewgl5ye.jpg"
+              />
+            </Box>
+          )}
+
         </DropZoneStyle>
 
         {fileRejections.length > 0 && (

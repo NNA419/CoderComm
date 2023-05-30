@@ -1,9 +1,8 @@
 import { Controller, useFormContext } from "react-hook-form";
 import { TextField } from '@mui/material';
-import { useState } from "react";
 
 
-function FTextField({ name, content, ...other }) {
+function FTextField({ name, ...other }) {
 
     const { control } = useFormContext();
 
@@ -13,7 +12,7 @@ function FTextField({ name, content, ...other }) {
         control={control}
         render={({ field, fieldState: { error } }) => (
           <TextField
-            defaultValue={content}
+            {...field}
             fullWidth
             error={!!error}
             helperText={error?.message}
