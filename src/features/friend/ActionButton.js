@@ -28,14 +28,15 @@ function ActionButton({ currentUserId, targetUserId, friendship, sx }) {
     if (!friendship) return btnSendRequest;
 
     const btnUnfriend = (
-        <Button
-            sx={{ fontSize: "0.6rem", ...sx }}
-            size='small'
-            variant='contained'
-            onClick={() => dispatch(removeFriend(targetUserId))}
-        >
-            Unfriend
-        </Button>
+      <Button
+        sx={{ fontSize: "0.6rem", ...sx }}
+        size="small"
+        color="error"
+        variant="contained"
+        onClick={() => dispatch(removeFriend(targetUserId))}
+      >
+        Unfriend
+      </Button>
     );
 
      const btnResend = (
@@ -53,6 +54,7 @@ function ActionButton({ currentUserId, targetUserId, friendship, sx }) {
        <Button
          sx={{ fontSize: "0.6rem", ...sx }}
          size="small"
+         color="error"
          variant="contained"
          onClick={() => dispatch(cancelRequest(targetUserId))}
        >

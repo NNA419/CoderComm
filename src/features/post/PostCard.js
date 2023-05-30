@@ -48,6 +48,8 @@ function PostCard({ post }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
 
+  console.log(post)
+
   const handleClose = () => setOpen(false);
   
   const methods = useForm({
@@ -139,6 +141,8 @@ function PostCard({ post }) {
     </Menu>
   );
 
+console.log("PostCard")
+
   return (
     <div>
       <Modal
@@ -153,6 +157,7 @@ function PostCard({ post }) {
               <Stack spacing={2}>
                 <FTextField
                   name="content"
+                  content={post.content}
                   multiline
                   fullWidth
                   rows={4}

@@ -54,6 +54,8 @@ function PostForm() {
         [setValue]
     );
 
+    console.log("PostForm")
+
   return (
       <Card sx={{p:3}}>
           <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>

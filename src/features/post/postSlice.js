@@ -153,4 +153,14 @@ export const deletePost = ({postId , userId}) => async (dispatch) => {
   }
 }
 
+export const getSinglePost = ({ postId }) => async (dispatch) => {
+  dispatch(slice.actions.startLoading());
+
+  try {
+    
+  } catch (error) {
+    
+  }
+}
+
 export default slice.reducer;
